@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hub - Lancé de dé{% endblock %}
+
+{% block body %}
+<h3>Choisissez vos joueurs</h3>
+
+<div class='uk-margin'>
+{{form_start(player1form)}}
+<label>
+Nom du joueur 1 :
+</label>
+{{ form_widget(player1form.name, { 'attr': {'class': 'uk-input uk-form-width-medium'} }) }}
+</div>
+
+<button class="uk-button uk-button-primary" type="submit">Suivant</button>
+{{(form_end(player1form))}}
+
+{% endblock %}

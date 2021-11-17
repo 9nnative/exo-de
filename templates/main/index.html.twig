@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ingame - Lancé de dé{% endblock %}
+
+{% block body %}
+
+{% if dé == 1 %}
+<img class="uk-animation-kenburns" height="100px" width="100px" src="svgs/dice-six-faces-one.svg">
+{% elseif dé == 2 %}
+<img class="uk-animation-kenburns" height="100px" width="100px" src="svgs/dice-six-faces-two.svg">
+{% elseif dé == 3 %}
+<img class="uk-animation-kenburns" height="100px" width="100px" src="svgs/dice-six-faces-three.svg">
+{% elseif dé == 4 %}
+<img class="uk-animation-kenburns" height="100px" width="100px" src="svgs/dice-six-faces-four.svg">
+{% elseif dé == 5 %}
+<img class="uk-animation-kenburns" height="100px" width="100px" src="svgs/dice-six-faces-five.svg">
+{% elseif dé == 6 %}
+<img class="uk-animation-kenburns" height="100px" width="100px" src="svgs/dice-six-faces-six.svg">
+{% endif %}
+
+<br><br>
+
+{% if messageWin is not empty %}
+<div class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p>{{messageWin}}</p>
+</div>
+{% endif %}
+
+{% if messageError is not empty %}
+<div class="uk-alert-warning" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p>{{messageError}}</p>
+</div>
+{% endif %}
+
+{% for player in lastTwoPlayers %}
+{{player.name}} :
+<progress uk-tooltip="title: Case : {{player.nbcases}}" class="uk-progress" value="{{player.nbcases}}" max="50"></progress>
+{% endfor %}
+
+<p>C'est au tour de {{currentPlayer.name}} ! (case {{currentPlayer.nbcases}}) </p>
+
+<a href="{{path('lancerde')}}"class="uk-button uk-button-primary">Lancer le dé</a>
+
+<a href="{{path('hub')}}"class="uk-button uk-button">Retour au hub</a>
+
+{% endblock %}
